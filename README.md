@@ -1,203 +1,370 @@
 <div align="center">
   <br />
-    <a href="https://youtu.be/Q7AYc2kECDI" target="_blank">
-      <img src="public/readme/readme-hero.webp" alt="Project Banner">
+    <a href="https://github.com/Faqih001/kiibridge-lingua-app" target="_blank">
+      <img src="public/readme/readme-hero.webp" alt="KiiBridge Lingua Banner">
     </a>
   <br />
 
   <div>
-<img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
-<img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" />
-<img src="https://img.shields.io/badge/NativeWind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
-<img src="https://img.shields.io/badge/Zustand-443E38?style=for-the-badge&logo=react&logoColor=white" />
-<br />
-<img src="https://img.shields.io/badge/Clerk-6C47FF?style=for-the-badge&logo=clerk&logoColor=white" />
-<img src="https://img.shields.io/badge/Stream-005FFF?style=for-the-badge&logo=getstream&logoColor=white" />
-<img src="https://img.shields.io/badge/PostHog-8B4513?style=for-the-badge&logo=posthog&logoColor=white" />
-<img src="https://img.shields.io/badge/CodeRabbit-FF6600?style=for-the-badge&logo=coderabbit&logoColor=white" />
-
+    <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+    <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" />
+    <img src="https://img.shields.io/badge/NativeWind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+    <img src="https://img.shields.io/badge/Zustand-443E38?style=for-the-badge&logo=react&logoColor=white" />
+    <br />
+    <img src="https://img.shields.io/badge/Clerk-6C47FF?style=for-the-badge&logo=clerk&logoColor=white" />
+    <img src="https://img.shields.io/badge/Stream-005FFF?style=for-the-badge&logo=getstream&logoColor=white" />
+    <img src="https://img.shields.io/badge/PostHog-8B4513?style=for-the-badge&logo=posthog&logoColor=white" />
+    <img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white" />
   </div>
 
-  <h3 align="center">Duolingo Clone | Stream & Visual Agents</h3>
+  <h3 align="center">KiiBridge Lingua | AI-Powered Language Learning Platform</h3>
 
-   <div align="center">
-     Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/watch?v=XUkNR-JfHwo" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
-    </div>
+  <div align="center">
+    Learn languages through real-time AI conversations, interactive lessons, personalized learning paths, and immersive voice-based practice experiences.
+  </div>
 </div>
 
-## 📋 <a name="table">Table of Contents</a>
+## 📋 Table of Contents
 
-1. ✨ [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🔗 [Assets](#links)
-6. 🚀 [More](#more)
+1. ✨ Introduction
+2. ⚙️ Tech Stack
+3. 🔋 Features
+4. 🤸 Quick Start
+5. 🚀 Deployment
+6. 📱 App Structure
+7. 🔗 Assets & Resources
 
-## 🚨 Tutorial
+---
 
-This repository contains the code corresponding to an in-depth tutorial available on our YouTube channel, <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a>.
+## ✨ Introduction
 
-If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects like these step-by-step in a beginner-friendly manner!
+KiiBridge Lingua is a modern AI-powered language learning mobile application built to help learners improve speaking, listening, reading, and conversational skills through interactive lessons and real-time AI tutoring.
 
-<a href="https://youtu.be/Q7AYc2kECDI" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
+The platform combines conversational AI, voice interactions, adaptive learning paths, and personalized practice sessions to create an immersive language-learning experience. Users can engage with an AI teacher, practice real-world conversations, track progress, and improve fluency at their own pace.
 
-## <a name="introduction">✨ Introduction</a>
+Built using React Native, Expo, Clerk, Stream, OpenAI technologies, and modern mobile development tools, KiiBridge Lingua delivers a scalable and engaging language-learning experience across iOS and Android devices.
 
-This application is a full-featured React Native language-learning platform that leverages a sophisticated AI teacher for real-time voice interaction. Rather than just another "toy" demo, it serves as a masterclass in Practical Vibe Coding, a structured workflow using tools like Expo, Clerk, and Stream to build production-ready apps without writing manual code. It transforms the "app you never built" into a shipped reality by bridging the gap between raw AI prompting and professional software architecture.
+---
 
-If you're getting started and need assistance or face any bugs, join our active Discord community with over **50k+** members. It's a place where people help each other out.
+## ⚙️ Tech Stack
 
-<a href="https://discord.com/invite/n6EdbFJ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/618f4872-1e10-42da-8213-1d69e486d02e" /></a>
+- **React Native** — Cross-platform mobile framework for building native Android and iOS applications from a single codebase.
+- **Expo** — Development platform that simplifies building, testing, and deploying React Native applications.
+- **TypeScript** — Strongly typed language that improves code quality, maintainability, and developer productivity.
+- **NativeWind** — Utility-first styling framework for creating responsive and consistent mobile user interfaces.
+- **Zustand** — Lightweight state management solution for handling application-wide state efficiently.
+- **Clerk** — Authentication and user management platform supporting secure login, registration, and account management.
+- **Stream** — Real-time communication infrastructure powering AI voice interactions and conversational experiences.
+- **OpenAI** — AI engine responsible for conversational tutoring, language assistance, pronunciation support, and learning guidance.
+- **PostHog** — Analytics platform used to monitor engagement, learning behavior, and application performance.
 
-## <a name="tech-stack">⚙️ Tech Stack</a>
+---
 
-- **[React Native](https://reactnative.dev/)** is an open-source framework for building native mobile applications using React. It allows developers to use a single codebase for both iOS and Android by rendering with native UI components for high performance.
+## 🔋 Features
 
-- **[Expo](https://expo.dev/)** is an open-source platform and framework for universal React applications. It provides a set of tools and services that simplify the development, building, and deployment process, allowing for rapid iteration and seamless access to native device APIs.
+### 🌍 Multi-Language Learning
 
-- **[TypeScript](https://www.typescriptlang.org/)** is a strongly typed programming language that builds on JavaScript, providing static types to catch errors early and improving the developer experience with robust autocompletion and refactoring tools.
+Support for learning multiple languages through structured lessons and conversational practice.
 
-- **[NativeWind](https://www.nativewind.dev/)** uses Tailwind CSS as a scripting engine to create a universal styling system for React Native. It allows you to style mobile components using familiar utility classes, ensuring consistent design and rapid UI development.
+### 👋 Personalized Onboarding
 
-- **[Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)** is a small, fast, and scalable state-management solution. It provides a simple API based on hooks, making it easy to manage global application state without the boilerplate or complexity of other libraries.
+Guided onboarding process allowing users to select:
 
-- **[Clerk](https://jsm.dev/lingua-clerk)** is a complete user management and authentication solution. It offers pre-built components for sign-in, sign-up, and user profiles, along with secure social login integration and multi-factor authentication out of the box.
+- Preferred language
+- Learning goals
+- Proficiency level
+- Daily learning targets
 
-- **[Stream](https://jsm.dev/lingua-stream)** provides real-time audio infrastructure for AI-driven voice interactions. It enables the app to hear, see, and act in real-time, powering the conversational AI teacher with low-latency communication.
+### 🔐 Secure Authentication
 
-- **[PostHog](https://jsm.dev/lingua-posthog)** is an all-in-one product analytics platform. It helps developers understand user behavior, track key events within the app, and utilize session recordings to improve product-market fit and user engagement.
+User registration, login, profile management, and account security powered by Clerk.
 
-- **[CodeRabbit](https://jsm.dev/lingua-coderabbit)** is an AI-powered code review platform that integrates into your CI/CD pipeline. It automatically reviews pull requests to identify bugs and suggest improvements, acting as a persistent reviewer for every AI-generated code change.
+### 🎙️ Real-Time AI Language Teacher
 
-## <a name="features">🔋 Features</a>
+Practice conversations naturally with an AI-powered tutor capable of listening, responding, and guiding language learning.
 
-👉 **Onboarding Flow**: A seamless mobile sequence for language selection and goal setting, proving the gap between "I want to build this" and "it's running on my phone" is now just a weekend.
+### 🗣️ Voice-Based Learning
 
-👉 **Auth Pages**: Secure and professional signup and sign-in functionality utilizing email and social auth, powered by **Clerk** for robust user management.
+Interactive speaking exercises and pronunciation coaching through real-time voice communication.
 
-👉 **Real-Time AI Teacher**: An immersive "speak and respond" experience powered by **Stream Voice Agents**, allowing for natural, back-and-forth verbal practice that feels like having a tutor always around.
+### 📚 Interactive Lessons
 
-👉 **Lesson Interface**: A core learning engine built with **React Native**, **Expo**, and **TypeScript**, using **NativeWind** to maintain a polished UI that survives contact with serious features.
+Structured learning modules covering:
 
-👉 **State Management**: Clean and scalable app logic handled by **Zustand**, ensuring your "Practical Vibe Coding" workflow stays structured without getting lost in spaghetti code.
+- Vocabulary
+- Grammar
+- Listening
+- Speaking
+- Reading comprehension
+- Practical conversations
 
-👉 **Analytics & Review**: Production-ready monitoring via **PostHog**, paired with **CodeRabbit** to automatically review every AI-generated PR before it ever merges into your codebase.
+### 🎯 Adaptive Learning Paths
 
-And many more, including code architecture and reusability.
+Personalized learning recommendations based on user performance, goals, and progress.
 
-## <a name="quick-start">🤸 Quick Start</a>
+### 📊 Learning Analytics
 
-Follow these steps to set up the project locally on your machine.
+Track:
 
-**Prerequisites**
+- Lesson completion
+- Language proficiency growth
+- Learning streaks
+- Speaking performance
+- Practice statistics
 
-Make sure you have the following installed on your machine:
+### 🔔 Progress Tracking
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
+Monitor milestones, achievements, and language-learning goals.
 
-**Cloning the Repository**
+### 🎮 Gamified Learning Experience
+
+Encourage engagement through rewards, badges, streaks, and progress indicators.
+
+### 📱 Mobile-First Design
+
+Optimized user experience across Android and iOS devices.
+
+---
+
+## 🤸 Quick Start
+
+### Prerequisites
+
+Ensure the following are installed:
+
+- Git
+- Node.js
+- npm
+- Expo CLI (optional)
+
+---
+
+### Clone the Repository
 
 ```bash
-git clone https://github.com/adrianhajdin/react-native-lingua.git
-cd react-native-lingua
+git clone https://github.com/Faqih001/kiibridge-lingua-app.git
+cd kiibridge-lingua-app
 ```
 
-## Installation
+---
 
-Before you begin developing your app, it's essential to set up Expo and initialize your project.
-
-- Start by creating a folder for your application. Then, open your terminal and navigate to that folder. To create an Expo app, you can use:
-
-```bash
-npx create-expo-app@latest
-```
-
-By default, you get a TypeScript Expo app with Expo Router configured.
-
-If you want a different starter (blank JS, blank TS, tabs, etc.), you can run:
-
-```bash
-npx create-expo-app@latest --template
-```
-
-And pick whichever template fits your workflow.
-
-Since this repository is already created, install dependencies and start the development server:
+### Install Dependencies
 
 ```bash
 npm install
-npx expo start
 ```
 
-`npx expo start` means "download (if needed) and execute Expo locally." It starts Metro Bundler, which compiles and serves your React Native code.
+---
 
-Once it starts, you'll see a QR code and shortcut keys in the terminal. For example:
+### Configure Environment Variables
 
-- `a` opens Android
-- `i` opens iOS Simulator (macOS)
-- `w` opens web
-- `r` reloads
-- `m` opens dev menu in Expo Go / device context
-
-We don't need to rely on heavy IDE tooling to begin. The easiest flow is using Expo Go on your phone.
-
-Expo Go is a mobile app that lets you test React Native apps quickly by scanning a QR code. It's fast, beginner-friendly, and supports real-time updates while you code.
-
-Open Google Play Store or Apple App Store, install **Expo Go**, then come back here and scan the QR code.
-
-### iOS VPN Turn OFF, and network permissions…
-
-Now open Expo Go and scan the QR code from the terminal. The app should compile and launch.
-
-If all is good, you'll see the starter app with two tabs: Home and Explore.
-
-**Set Up Environment Variables**
-
-Create a new file named `.env` in the root of your project and add the following content:
+Create a `.env` file in the project root:
 
 ```env
+# Clerk Authentication
 EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=
 
+# Analytics
 POSTHOG_PROJECT_TOKEN=
 POSTHOG_HOST=
 
+# Stream Voice Services
 STREAM_API_KEY=
 STREAM_API_SECRET=
 
-# Vision Agent
-# Run `uv run main.py serve` inside vision-agent/
-VISION_AGENT_URL=http://localhost:8000
-
-# OpenAI API key (required for the vision-agent)
+# AI Services
 OPENAI_API_KEY=
+
+# Vision Agent (Optional)
+VISION_AGENT_URL=http://localhost:8000
 ```
 
-Replace the placeholder values with your real credentials. You can get these by signing up at: [**Stream**](https://jsm.dev/lingua-stream), [**PostHog**](https://jsm.dev/lingua-posthog), [**Clerk**](https://jsm.dev/lingua-clerk).
+Replace the placeholders with your service credentials.
 
-**Running the Project**
+---
+
+### Start Development Server
 
 ```bash
 npx expo start
 ```
 
-## <a name="links">🔗 Assets</a>
+---
 
-Assets and snippets used in the project can be found in the **[video kit](https://jsmastery.com/video-kit/042a469c-66fb-4922-9648-cbb1ca62d32e)**.
+### Run on Devices
 
-<a href="https://jsmastery.com/video-kit/042a469c-66fb-4922-9648-cbb1ca62d32e" target="_blank">
-  <img src="public/readme/readme-videokit.webp" alt="Video Kit Banner">
-</a>
+Use Expo commands:
 
-## <a name="more">🚀 More</a>
+```text
+a → Android Emulator
+i → iOS Simulator
+w → Web Browser
+r → Reload Application
+m → Open Developer Menu
+```
 
-**Advance your skills with our Pro Course**
+Alternatively, install **Expo Go** from the App Store or Google Play Store and scan the QR code displayed in the terminal.
 
-Enjoyed creating this project? Dive deeper into our PRO courses for a richer learning adventure. They're packed with
-detailed explanations, cool features, and exercises to boost your skills. Give it a go!
+---
 
-<a href="https://jsm.dev/lingua-jsm" target="_blank">
-  <img src="public/readme/readme-jsmpro.webp" alt="Project Banner">
-</a>
+## 🚀 How It Works
+
+### 1. Create an Account
+
+Register and set up your learner profile.
+
+### 2. Select Learning Preferences
+
+Choose:
+
+- Language to learn
+- Current proficiency level
+- Learning objectives
+- Daily targets
+
+### 3. Start Lessons
+
+Complete interactive lessons covering vocabulary, grammar, and communication skills.
+
+### 4. Practice with AI
+
+Engage in real-time voice conversations with the AI tutor.
+
+### 5. Receive Feedback
+
+Get personalized guidance on:
+
+- Pronunciation
+- Grammar
+- Vocabulary usage
+- Conversation fluency
+
+### 6. Track Progress
+
+Monitor learning achievements and language development through analytics dashboards.
+
+### 7. Continue Improving
+
+Follow personalized recommendations and adaptive learning pathways.
+
+---
+
+## 📱 App Structure
+
+```text
+.
+├── app/
+│   ├── onboarding/
+│   ├── auth/
+│   ├── lessons/
+│   ├── practice/
+│   ├── profile/
+│   └── settings/
+│
+├── components/
+│   ├── lessons/
+│   ├── practice/
+│   ├── analytics/
+│   └── ui/
+│
+├── services/
+│   ├── ai/
+│   ├── stream/
+│   └── analytics/
+│
+├── store/
+│
+├── hooks/
+│
+├── assets/
+│
+├── utils/
+│
+└── types/
+```
+
+---
+
+## 🚀 Deployment
+
+### Android Build
+
+```bash
+eas build --platform android
+```
+
+### iOS Build
+
+```bash
+eas build --platform ios
+```
+
+### Production Deployment
+
+```bash
+eas submit
+```
+
+Ensure:
+
+- Clerk is configured.
+- Stream services are connected.
+- OpenAI API credentials are active.
+- Analytics integrations are enabled.
+
+---
+
+## 🔗 Assets & Resources
+
+Recommended project directories:
+
+```text
+/assets
+/public
+/docs
+```
+
+Documentation:
+
+```text
+README.md
+/docs
+```
+
+Language resources:
+
+```text
+/assets/languages
+/assets/audio
+/assets/lessons
+```
+
+---
+
+## 🚀 Future Enhancements
+
+- AI pronunciation scoring
+- Video conversation practice
+- Language placement tests
+- Offline learning mode
+- Community learning groups
+- Live tutor integration
+- Language certification preparation
+- Multi-device synchronization
+- Advanced learning analytics
+- Classroom and institution support
+- AI-generated lesson creation
+- Language exchange matching
+
+---
+
+## 📄 License
+
+This project is maintained under the applicable license specified within the repository.
+
+---
+
+<div align="center">
+  <strong>KiiBridge Lingua</strong><br/>
+  Empowering language learners through AI-driven conversations, personalized learning, and immersive mobile experiences.
+</div>
