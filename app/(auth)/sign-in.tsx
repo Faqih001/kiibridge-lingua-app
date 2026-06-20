@@ -6,7 +6,7 @@ import { useLanguageStore } from "@/store/languageStore";
 import { useSignIn, useSSO } from "@clerk/expo";
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
-import { type Href, router } from "expo-router";
+import { router } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { useState } from "react";
 import {
@@ -27,7 +27,7 @@ WebBrowser.maybeCompleteAuthSession();
 type SSOStrategy = "oauth_google" | "oauth_facebook" | "oauth_apple";
 
 export default function SignInScreen() {
-  const { signIn, errors, fetchStatus } = useSignIn();
+  const { signIn, setActive, errors, fetchStatus } = useSignIn();
   const { startSSOFlow } = useSSO();
   const { selectedLanguage } = useLanguageStore();
 
@@ -93,11 +93,8 @@ export default function SignInScreen() {
           $set: { preferred_language: selectedLanguage ?? null },
         });
       }
-      await signIn.finalize({
-        navigate: ({ decorateUrl }) => {
-          router.replace(decorateUrl("/") as Href);
-        },
-      });
+      await setActive({ session: signIn.createdSessionId! });
+      router.replace("/");
     }
   };
 
@@ -121,6 +118,10 @@ export default function SignInScreen() {
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Unknown SSO sign-in error";
+      if (message.toLowerCase().includes("already signed in")) {
+        router.replace("/");
+        return;
+      }
       console.error("SSO sign-in failed", err);
       posthog.capture("sign_in_sso_failed", {
         strategy,
