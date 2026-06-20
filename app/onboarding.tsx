@@ -43,7 +43,7 @@ export default function OnboardingScreen() {
                 color: "#001328",
               }}
             >
-              lingua
+              KiiBridge Lingua App
             </Text>
           </View>
 

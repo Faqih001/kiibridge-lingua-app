@@ -1,19 +1,19 @@
 export default {
   expo: {
-    name: "duolingo-clone",
-    slug: "duolingo-clone",
+    name: "kiibridge-lingua-app",
+    slug: "kiibridge-lingua-app",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/images/icon.png",
-    scheme: "duolingoclone",
+    scheme: "kiibridge-lingua-app",
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
     ios: {
       supportsTablet: true,
-      bundleIdentifier: "com.jsmastery.duolingo-clone",
+      bundleIdentifier: "com.kiibridge-lingua-app",
     },
     android: {
-      package: "com.jsmastery.duolingoclone",
+      package: "com.kiibridge-lingua-app",
       adaptiveIcon: {
         backgroundColor: "#E6F4FE",
         foregroundImage: "./assets/images/android-icon-foreground.png",
