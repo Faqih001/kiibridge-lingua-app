@@ -25,29 +25,34 @@ import { Lesson } from "@/types/learning";
 
 type Message = { id: string; role: "user" | "assistant"; content: string };
 
-const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY ?? "";
+const GEMINI_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY ?? "";
 
 async function askTeacher(
   messages: Array<{ role: string; content: string }>,
   systemPrompt: string
 ): Promise<string> {
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_KEY}`,
-    },
-    body: JSON.stringify({
-      model: "gpt-4o-mini",
-      messages: [{ role: "system", content: systemPrompt }, ...messages],
-      max_tokens: 200,
-    }),
-  });
+  const contents = messages.map((m) => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [{ text: m.content }],
+  }));
+
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: systemPrompt }] },
+        contents,
+        generationConfig: { maxOutputTokens: 200 },
+      }),
+    }
+  );
   if (!res.ok) throw new Error(await res.text());
   const data = (await res.json()) as {
-    choices: Array<{ message: { content: string } }>;
+    candidates?: Array<{ content: { parts: Array<{ text: string }> } }>;
   };
-  return data.choices?.[0]?.message?.content ?? "";
+  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
 }
 
 // ─── Lesson picker ────────────────────────────────────────────────────────────

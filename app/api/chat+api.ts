@@ -1,3 +1,8 @@
+type GeminiMessage = {
+  role: "user" | "model";
+  parts: Array<{ text: string }>;
+};
+
 export async function POST(request: Request): Promise<Response> {
   let body: {
     messages?: Array<{ role: string; content: string }>;
@@ -12,9 +17,9 @@ export async function POST(request: Request): Promise<Response> {
 
   const { messages = [], language = "your target language", systemPrompt } = body;
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return Response.json({ error: "AI not configured" }, { status: 500 });
+    return Response.json({ error: "Gemini not configured" }, { status: 500 });
   }
 
   const resolvedSystem =
@@ -25,18 +30,23 @@ export async function POST(request: Request): Promise<Response> {
       `Gently correct mistakes and introduce vocabulary naturally. ` +
       `Encourage the user to try writing in ${language}.`;
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: "gpt-4o-mini",
-      messages: [{ role: "system", content: resolvedSystem }, ...messages],
-      max_tokens: 300,
-    }),
-  });
+  const contents: GeminiMessage[] = messages.map((m) => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [{ text: m.content }],
+  }));
+
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: resolvedSystem }] },
+        contents,
+        generationConfig: { maxOutputTokens: 300 },
+      }),
+    }
+  );
 
   if (!res.ok) {
     const text = await res.text();
@@ -44,8 +54,8 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   const data = (await res.json()) as {
-    choices: Array<{ message: { content: string } }>;
+    candidates?: Array<{ content: { parts: Array<{ text: string }> } }>;
   };
-  const reply = data.choices?.[0]?.message?.content ?? "";
+  const reply = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
   return Response.json({ reply });
 }
