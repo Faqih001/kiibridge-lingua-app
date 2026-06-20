@@ -1,5 +1,4 @@
 import { Ionicons } from "@expo/vector-icons";
-import Constants from "expo-constants";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
@@ -25,10 +24,42 @@ type Message = {
   content: string;
 };
 
-const API_BASE =
-  Platform.OS === "web"
-    ? ""
-    : `http://${Constants.expoConfig?.hostUri ?? "localhost:8081"}`;
+const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY ?? "";
+
+async function askOpenAI(
+  messages: Array<{ role: string; content: string }>,
+  language: string
+): Promise<string> {
+  const systemPrompt =
+    `You are KiiBridge, a friendly and encouraging ${language} language tutor. ` +
+    `Help the user practice ${language} through natural conversation. ` +
+    `Keep responses concise (2-3 sentences). ` +
+    `Gently correct mistakes and introduce vocabulary naturally. ` +
+    `Encourage the user to try writing in ${language}.`;
+
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_KEY}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [{ role: "system", content: systemPrompt }, ...messages],
+      max_tokens: 300,
+    }),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text);
+  }
+
+  const data = (await res.json()) as {
+    choices: Array<{ message: { content: string } }>;
+  };
+  return data.choices?.[0]?.message?.content ?? "";
+}
 
 export default function ChatScreen() {
   const { selectedLanguage } = useLanguageStore();
@@ -51,7 +82,6 @@ export default function ChatScreen() {
     posthog.capture("chat_viewed");
   }, []);
 
-  // Reset conversation when language changes
   useEffect(() => {
     setMessages([
       {
@@ -83,26 +113,20 @@ export default function ChatScreen() {
         role: m.role,
         content: m.content,
       }));
-      const res = await fetch(`${API_BASE}/api/chat`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: apiMessages, language: langName }),
-      });
-      const data = (await res.json()) as { reply?: string; error?: string };
-      const reply =
-        data.reply ?? "Sorry, I couldn't respond right now. Please try again.";
+      const reply = await askOpenAI(apiMessages, langName);
       setMessages((prev) => [
         ...prev,
         { id: `ai-${Date.now()}`, role: "assistant", content: reply },
       ]);
-    } catch {
+    } catch (err) {
+      const msg =
+        err instanceof Error ? err.message : "Unknown error";
       setMessages((prev) => [
         ...prev,
         {
           id: `err-${Date.now()}`,
           role: "assistant",
-          content:
-            "Connection error — make sure the dev server is running and try again.",
+          content: `Couldn't reach the AI tutor. ${msg}`,
         },
       ]);
     } finally {
@@ -113,12 +137,8 @@ export default function ChatScreen() {
   const renderItem = ({ item }: { item: Message }) => {
     const isUser = item.role === "user";
     return (
-      <View
-        style={[styles.bubble, isUser ? styles.userBubble : styles.aiBubble]}
-      >
-        <Text
-          style={[styles.bubbleText, isUser && styles.userBubbleText]}
-        >
+      <View style={[styles.bubble, isUser ? styles.userBubble : styles.aiBubble]}>
+        <Text style={[styles.bubbleText, isUser && styles.userBubbleText]}>
           {item.content}
         </Text>
       </View>
@@ -146,7 +166,6 @@ export default function ChatScreen() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={0}
       >
-        {/* Message list */}
         <FlatList
           ref={flatListRef}
           data={messages}
@@ -159,19 +178,14 @@ export default function ChatScreen() {
           showsVerticalScrollIndicator={false}
         />
 
-        {/* Typing indicator */}
         {loading && (
           <View style={styles.typingRow}>
             <View style={styles.aiBubble}>
-              <ActivityIndicator
-                size="small"
-                color={colors.neutral.textSecondary}
-              />
+              <ActivityIndicator size="small" color={colors.neutral.textSecondary} />
             </View>
           </View>
         )}
 
-        {/* Input bar */}
         <View style={styles.inputRow}>
           <TextInput
             style={styles.textInput}
@@ -199,7 +213,6 @@ export default function ChatScreen() {
 }
 
 const styles = StyleSheet.create({
-  // Header
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -228,7 +241,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.neutral.textPrimary,
   },
-  headerOnlineRow: { flexDirection: "row", alignItems: "center", gap: 5, marginTop: 2 },
+  headerOnlineRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    marginTop: 2,
+  },
   onlineDot: {
     width: 7,
     height: 7,
@@ -240,7 +258,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.neutral.textSecondary,
   },
-  // Messages
   listContent: {
     paddingHorizontal: 16,
     paddingTop: 14,
@@ -271,7 +288,6 @@ const styles = StyleSheet.create({
   },
   userBubbleText: { color: "#fff" },
   typingRow: { paddingHorizontal: 16, paddingBottom: 6 },
-  // Input
   inputRow: {
     flexDirection: "row",
     alignItems: "flex-end",
