@@ -1,7 +1,9 @@
 import { images } from "@/constants/images";
 import { posthog } from "@/lib/posthog";
+import { useLanguageStore } from "@/store/languageStore";
+import { useAuth } from "@clerk/expo";
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { Redirect, router } from "expo-router";
 import {
   Image,
   StyleSheet,
@@ -14,6 +16,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function OnboardingScreen() {
   const { width, height } = useWindowDimensions();
+  const { isSignedIn, isLoaded } = useAuth();
+  const { selectedLanguage } = useLanguageStore();
+
+  if (isLoaded && isSignedIn) {
+    return <Redirect href={selectedLanguage ? "/(tabs)" : "/language-select"} />;
+  }
   const isSmall = width < 360;
   const isTablet = width >= 768;
 

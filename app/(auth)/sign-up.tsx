@@ -100,7 +100,10 @@ export default function SignUpScreen() {
         });
       }
       await setActive({ session: signUp.createdSessionId! });
-      router.replace("/");
+      const dest = useLanguageStore.getState().selectedLanguage
+        ? "/(tabs)"
+        : "/language-select";
+      router.replace(dest);
     }
   };
 
@@ -119,13 +122,19 @@ export default function SignUpScreen() {
       if (createdSessionId && setActive) {
         posthog.capture("sign_up_completed", { method: strategy });
         await setActive({ session: createdSessionId });
-        router.replace("/");
+        const dest = useLanguageStore.getState().selectedLanguage
+          ? "/(tabs)"
+          : "/language-select";
+        router.replace(dest);
       }
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Unknown SSO sign-up error";
       if (message.toLowerCase().includes("already signed in")) {
-        router.replace("/");
+        const dest = useLanguageStore.getState().selectedLanguage
+          ? "/(tabs)"
+          : "/language-select";
+        router.replace(dest);
         return;
       }
       console.error("SSO sign-up failed", err);
